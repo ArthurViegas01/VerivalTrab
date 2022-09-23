@@ -1,0 +1,11 @@
+Em uma diminuta ilha tropical a gasolina vendida nos postos é resultado de uma mistura de 3 componentes: 5% de aditivo, 25% de álcool e 70% de gasolina pura. A preparação do produto é feita por encomenda dos postos em um único centro de distribuição. Esse centro possui estoques adequados ao número de veículos da ilha. A figura 1 apresenta os tanques disponíveis nesse centro.
+
+Existem dois tipos de postos na ilha. Os postos COMUNS, que atendem a população em geral e os postos ESTRATEGICOS que atendem apenas ambulâncias e veículos da polícia.
+
+A produção da mistura que será entregue nos postos deve-se obedecer aos percentuais já definidos e considerar as seguintes regras:
+
+1. Se houver falta de qualquer um dos componentes na quantidade adequada a encomenda não pode ser entregue.
+
+2. Os tanques de álcool devem ter sempre a mesma quantidade de combustível de maneira a manter o equilíbrio da estrutura devido a forma como foram construídos. Isso vale tanto para o armazenamento como para a retirada.
+
+3. Como os tanques são pequenos a ilha mantém um sistema para controlar os estoques. Quando todos os tanques estiverem com pelo menos 50% da capacidade o sistema opera em modo NORMAL e as encomendas são entregues normalmente para qualquer tipo de posto. Se o volume armazenado em qualquer um dos tanques cair abaixo de 50% o sistema passa a operar em modo SOBRAVISO. Neste modo o sistema só entrega 50% do que é solicitado pelos postos COMUNS e o total solicitado pelos ESTRATEGICOS. Caso o volume em qualquer um dos tanques caia abaixo de 25%, então o sistema passa a operar em modo de EMERGÊNCIA e as encomendas dos postos COMUNS deixam de ser atendidas e as dos ESTRATÉGICOS são atendidas em 50%.
