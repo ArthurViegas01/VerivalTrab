@@ -16,34 +16,38 @@ public class CentroDistribuicao {
     private int tAlcool2;
     private int tAlcool1;
     private int tGasolina;
+    private SITUACAO situacao;
 
     public CentroDistribuicao (int tAditivo, int tGasolina, int tAlcool1, int tAlcool2) {
-        this.tAditivo=tAditivo;
-        this.tGasolina=tGasolina;
-        this.tAlcool1=tAlcool1;
-        this.tAlcool2=tAlcool2;
+        this.tAditivo = tAditivo;
+        this.tGasolina = tGasolina;
+        this.tAlcool1 = tAlcool1;
+        this.tAlcool2 = tAlcool2;
+        this.situacao = SITUACAO.SOBRAVISO;
     }
 
-    // public void defineSituacao(String situacao){
-    //     SIUACAO(String situacao){this.siuacao=situacao}
-    // }
-
-    public SITUACAO getSituacao(){
-        if(tGasolina<=(MAX_GASOLINA/2)){
-            if(tAlcool1+tAlcool2<=(MAX_ALCOOL/2)){
-                if(tAditivo<=(MAX_ADITIVO/2)){
-                    return SITUACAO.EMERGENCIA;
+    public void defineSituacao() {
+        if( (tGasolina <= (MAX_GASOLINA/2)) && (tGasolina >= (MAX_GASOLINA/4)) ) {
+            if((tAlcool1 + tAlcool2 <= (MAX_ALCOOL/2)) && (tAlcool1 + tAlcool2 <= (MAX_ALCOOL/4))) {
+                if((tAditivo <= (MAX_ADITIVO/2))&&(tAditivo <= (MAX_ADITIVO/4))) {
+                    situacao = SITUACAO.SOBRAVISO;
                 }
             }
         }
-        // if(getGasolina()<=(MAX_GASOLINA/2)){
-        //     if(getAlcool1()+getAlcool2()<=(MAX_ALCOOL/2)){
-        //         if(tAditivo<=(MAX_ADITIVO/2)){
-        //             return SITUACAO.EMERGENCIA;
-        //         }
-        //     }
-        // }
-        return SITUACAO.NORMAL; 
+        if(tGasolina <= (MAX_GASOLINA/4)){
+            if(tAlcool1+tAlcool2 <= (MAX_ALCOOL/4)){
+                if(tAditivo <= (MAX_ADITIVO/4)){
+                    situacao = SITUACAO.EMERGENCIA;
+                }
+            }
+        }
+        situacao = SITUACAO.NORMAL; 
+
+
+    }
+
+    public SITUACAO getSituacao(){
+        return situacao;
     }
 
     public int getGasolina(){
