@@ -67,22 +67,46 @@ public class CentroDistribuicao {
     }
 
     public int recebeAditivo(int qtdade) {
-        return qtdade;
+        return (int)(qtdade*0.05);
         
     }
 
     public int recebeGasolina(int qtdade) {
-        return qtdade;
+        return (int)(qtdade*0.70);
 
     }
 
     public int recebeAlcool(int qtdade) {
-        return qtdade;
+        return (int)(qtdade*0.25);
 
     }
 
     public int[] encomendaCombustivel(int qtdade, TIPOPOSTO tipoPosto) {
-        return null;
+        if(tipoPosto==TIPOPOSTO.COMUM){
+            if( getSituacao()==situacao){
+               // return qtdade;
+            }
+            if(getSituacao()==situacao){
+              // return (int) (qtdade*0.25);
+            }
+            if(getSituacao()==situacao){
+             //  return (qtdade*0);
+            }
+        }
+        else if(tipoPosto==TIPOPOSTO.ESTRATEGICO){
+            if( getSituacao()==situacao){
+               // return qtdade;
+             }
+             if(getSituacao()==situacao){
+               // return qtdade;
+            }
+            if(getSituacao()==situacao){
+               // return (int) (qtdade*0.25);
+            }
+        }
+        return 0;
 
     }
 }
+
+
