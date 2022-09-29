@@ -29,8 +29,8 @@ public class CentroDistribuicao {
     // }
 
     public SITUACAO getSituacao(){
-        if(getGasolina()<=(MAX_GASOLINA/2)){
-            if(getAlcool1()+getAlcool2()<=(MAX_ALCOOL/2)){
+        if(tGasolina<=(MAX_GASOLINA/2)){
+            if(tAlcool1+tAlcool2<=(MAX_ALCOOL/2)){
                 if(tAditivo<=(MAX_ADITIVO/2)){
                     return SITUACAO.EMERGENCIA;
                 }
