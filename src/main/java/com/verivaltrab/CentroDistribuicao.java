@@ -19,11 +19,11 @@ public class CentroDistribuicao {
     private double tAlcool1;
     private double tGasolina;
     private SITUACAO situacao;
-    private double total; // variável auxiliar | total de combustível requisitado
+    //private double total; // variável auxiliar | total de combustível requisitado
 
     public CentroDistribuicao(double tAditivo, double tGasolina, double tAlcool1, double tAlcool2)
             throws IllegalArgumentException {
-        total = tAditivo + tGasolina + tAlcool1 + tAlcool2;
+        //total = tAditivo + tGasolina + tAlcool1 + tAlcool2;
         // tratamento de valores menores ou iguais a zero
         if ((tAditivo <= 0) || (tGasolina <= 0) || (tAlcool1 <= 0) || (tAlcool2 <= 0)) {
             throw new IllegalArgumentException("Valor negativo ou zero não suportado");
@@ -123,7 +123,7 @@ public class CentroDistribuicao {
         int[] gasosa = { 0, 0, 0 }; // | gasolina | aditivo | alcool |
 
         if (tipoPosto == TIPOPOSTO.COMUM) { // tipo de posto
-            if (getSituacao() == situacao.NORMAL) {// situações diversas
+            if (getSituacao() == SITUACAO.NORMAL) {// situações diversas
                 gasosa[0] = (int) (qtdade * 0.70); // valores de gasolina aditivo e alcool encomendados.
                 tGasolina = tGasolina - (qtdade * 0.70);
                 gasosa[1] = (int) (qtdade * 0.05);
@@ -133,7 +133,7 @@ public class CentroDistribuicao {
                 tAlcool2 = tAlcool2 - ((qtdade * 0.25) / 2);
                 return gasosa;
             }
-            if (getSituacao() == situacao.SOBRAVISO) { // 50% off
+            if (getSituacao() == SITUACAO.SOBRAVISO) { // 50% off
                 gasosa[0] = (int) ((qtdade * 0.70) / 2); // valores de gasolina aditivo e alcool encomendados.
                 tGasolina = tGasolina - ((qtdade * 0.70) / 2);
                 gasosa[1] = (int) ((qtdade * 0.05) / 2);
@@ -143,11 +143,11 @@ public class CentroDistribuicao {
                 tAlcool2 = tAlcool2 - ((qtdade * 0.25) / 4);
                 return gasosa;
             }
-            if (getSituacao() == situacao.EMERGENCIA) {
+            if (getSituacao() == SITUACAO.EMERGENCIA) {
                 return gasosa;
             }
         } else if (tipoPosto == TIPOPOSTO.ESTRATEGICO) {
-            if (getSituacao() == situacao.NORMAL) {// situações diversas
+            if (getSituacao() == SITUACAO.NORMAL) {// situações diversas
                 gasosa[0] = (int) (qtdade * 0.70); // valores de gasolina aditivo e alcool encomendados.
                 tGasolina = tGasolina - (qtdade * 0.70);
                 gasosa[1] = (int) (qtdade * 0.05);
@@ -157,7 +157,7 @@ public class CentroDistribuicao {
                 tAlcool2 = tAlcool2 - ((qtdade * 0.25) / 2);
                 return gasosa;
             }
-            if (getSituacao() == situacao.SOBRAVISO) { // 50% off
+            if (getSituacao() == SITUACAO.SOBRAVISO) { // 50% off
                 gasosa[0] = (int) ((qtdade * 0.70)); // valores de gasolina aditivo e alcool encomendados.
                 tGasolina = tGasolina - ((qtdade * 0.70));
                 gasosa[1] = (int) ((qtdade * 0.05));
@@ -167,7 +167,7 @@ public class CentroDistribuicao {
                 tAlcool2 = tAlcool2 - ((qtdade * 0.25) / 2);
                 return gasosa;
             }
-            if (getSituacao() == situacao.EMERGENCIA) {
+            if (getSituacao() == SITUACAO.EMERGENCIA) {
                 gasosa[0] = (int) ((qtdade * 0.70) / 2); // valores de gasolina aditivo e alcool encomendados.
                 tGasolina = tGasolina - ((qtdade * 0.70) / 2);
                 gasosa[1] = (int) ((qtdade * 0.05) / 2);
