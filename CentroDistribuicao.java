@@ -67,24 +67,45 @@ public class CentroDistribuicao {
     }
 
     public int recebeAditivo(int qtdade) {
+        if(getAditivo()<qtdade*0.05){
+            return 0;
+        }
+        else 
+        
         return (int)(qtdade*0.05);
         
     }
 
     public int recebeGasolina(int qtdade) {
+        if(getGasolina()<qtdade*0.70){
+            return 0;
+        }
+        else
+        
         return (int)(qtdade*0.70);
 
     }
 
     public int recebeAlcool(int qtdade) {
+        
+        if(getAlcool1()!=getAlcool2()){
+            return 0;
+        }
+        int alcool=0;
+        alcool=getAlcool1()+getAlcool2();
+        if(alcool<qtdade*0.25){
+            return 0;
+        }
+        else
         return (int)(qtdade*0.25);
 
     }
 
     public int[] encomendaCombustivel(int qtdade, TIPOPOSTO tipoPosto) {
+        
         if(tipoPosto==TIPOPOSTO.COMUM){
             if( getSituacao()==situacao){
-               // return qtdade;
+                
             }
             if(getSituacao()==situacao){
               // return (int) (qtdade*0.25);
@@ -104,7 +125,8 @@ public class CentroDistribuicao {
                // return (int) (qtdade*0.25);
             }
         }
-        return 0;
+     //   return 0;
+        return null;
 
     }
 }
