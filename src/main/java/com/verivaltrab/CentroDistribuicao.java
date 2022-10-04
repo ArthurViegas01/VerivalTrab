@@ -1,3 +1,4 @@
+package com.verivaltrab;
 
 public class CentroDistribuicao {
     public enum SITUACAO {
@@ -114,30 +115,66 @@ public class CentroDistribuicao {
     }
 
     public int[] encomendaCombustivel(int qtdade, TIPOPOSTO tipoPosto) {
+        // int qtdade = total de gasolina | mistura
+        int[] gasosa = { 0, 0, 0 }; // | gasolina | aditivo | alcool |
 
-        if (tipoPosto == TIPOPOSTO.COMUM) {
-            if (getSituacao() == situacao) {
-
+        if (tipoPosto == TIPOPOSTO.COMUM) { // tipo de posto
+            if (getSituacao() == situacao.NORMAL) {// situações diversas
+                gasosa[0] = (int) (qtdade * 0.70); // valores de gasolina aditivo e alcool encomendados.
+                tGasolina = tGasolina - (qtdade * 0.70);
+                gasosa[1] = (int) (qtdade * 0.05);
+                tAditivo = tAditivo - (qtdade * 0.05);
+                gasosa[2] = (int) (qtdade * 0.25);
+                tAlcool1 = tAlcool1 - ((qtdade * 0.25) / 2);
+                tAlcool2 = tAlcool2 - ((qtdade * 0.25) / 2);
+                return gasosa;
             }
-            if (getSituacao() == situacao) {
-                // return (int) (qtdade*0.25);
+            if (getSituacao() == situacao.SOBRAVISO) { // 50% off
+                gasosa[0] = (int) ((qtdade * 0.70) / 2); // valores de gasolina aditivo e alcool encomendados.
+                tGasolina = tGasolina - ((qtdade * 0.70) / 2);
+                gasosa[1] = (int) ((qtdade * 0.05) / 2);
+                tAditivo = tAditivo - ((qtdade * 0.05) / 2);
+                gasosa[2] = (int) ((qtdade * 0.25) / 2);
+                tAlcool1 = tAlcool1 - ((qtdade * 0.25) / 4);
+                tAlcool2 = tAlcool2 - ((qtdade * 0.25) / 4);
+                return gasosa;
             }
-            if (getSituacao() == situacao) {
-                // return (qtdade*0);
+            if (getSituacao() == situacao.EMERGENCIA) {
+                return gasosa;
             }
         } else if (tipoPosto == TIPOPOSTO.ESTRATEGICO) {
-            if (getSituacao() == situacao) {
-                // return qtdade;
+            if (getSituacao() == situacao.NORMAL) {// situações diversas
+                gasosa[0] = (int) (qtdade * 0.70); // valores de gasolina aditivo e alcool encomendados.
+                tGasolina = tGasolina - (qtdade * 0.70);
+                gasosa[1] = (int) (qtdade * 0.05);
+                tAditivo = tAditivo - (qtdade * 0.05);
+                gasosa[2] = (int) (qtdade * 0.25);
+                tAlcool1 = tAlcool1 - ((qtdade * 0.25) / 2);
+                tAlcool2 = tAlcool2 - ((qtdade * 0.25) / 2);
+                return gasosa;
             }
-            if (getSituacao() == situacao) {
-                // return qtdade;
+            if (getSituacao() == situacao.SOBRAVISO) { // 50% off
+                gasosa[0] = (int) ((qtdade * 0.70)); // valores de gasolina aditivo e alcool encomendados.
+                tGasolina = tGasolina - ((qtdade * 0.70));
+                gasosa[1] = (int) ((qtdade * 0.05));
+                tAditivo = tAditivo - ((qtdade * 0.05));
+                gasosa[2] = (int) ((qtdade * 0.25));
+                tAlcool1 = tAlcool1 - ((qtdade * 0.25) / 2);
+                tAlcool2 = tAlcool2 - ((qtdade * 0.25) / 2);
+                return gasosa;
             }
-            if (getSituacao() == situacao) {
-                // return (int) (qtdade*0.25);
+            if (getSituacao() == situacao.EMERGENCIA) {
+                gasosa[0] = (int) ((qtdade * 0.70) / 2); // valores de gasolina aditivo e alcool encomendados.
+                tGasolina = tGasolina - ((qtdade * 0.70) / 2);
+                gasosa[1] = (int) ((qtdade * 0.05) / 2);
+                tAditivo = tAditivo - ((qtdade * 0.05) / 2);
+                gasosa[2] = (int) ((qtdade * 0.25) / 2);
+                tAlcool1 = tAlcool1 - ((qtdade * 0.25) / 4);
+                tAlcool2 = tAlcool2 - ((qtdade * 0.25) / 4);
+                return gasosa;
             }
         }
-        // return 0;
-        return null;
+        return gasosa;
 
     }
 
