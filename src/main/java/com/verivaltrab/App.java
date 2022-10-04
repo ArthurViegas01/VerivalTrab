@@ -54,6 +54,7 @@ public class App{
         CentroDistribuicao centroDistribuicao3 = new CentroDistribuicao(120, 2000, 300, 300);
         //Tem que estar emergencia
 
+
         System.out.println(centroDistribuicao1.toString());
         System.out.println(centroDistribuicao2.toString());
         System.out.println(centroDistribuicao3.toString());
