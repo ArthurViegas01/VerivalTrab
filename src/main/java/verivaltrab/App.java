@@ -1,4 +1,4 @@
-package com.verivaltrab;
+package verivaltrab;
 /*Programa criado por:  Arthur Viegas
                         Israel Garcia
                         Pedro Fonseca   */

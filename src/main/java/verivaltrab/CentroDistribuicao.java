@@ -1,4 +1,4 @@
-package com.verivaltrab;
+package verivaltrab;
 
 
 public class CentroDistribuicao {
@@ -19,22 +19,13 @@ public class CentroDistribuicao {
     private double tAlcool1;
     private double tGasolina;
     private SITUACAO situacao;
-    //private double total; // variável auxiliar | total de combustível requisitado
 
     public CentroDistribuicao(double tAditivo, double tGasolina, double tAlcool1, double tAlcool2)
             throws IllegalArgumentException {
-        //total = tAditivo + tGasolina + tAlcool1 + tAlcool2;
-        // tratamento de valores menores ou iguais a zero
-        if ((tAditivo <= 0) || (tGasolina <= 0) || (tAlcool1 <= 0) || (tAlcool2 <= 0)) {
+        if ((tAditivo <= 0) || (tGasolina <= 0) || (tAlcool1 <= 0) || (tAlcool2 <= 0)){
             throw new IllegalArgumentException("Valor negativo ou zero não suportado");
-        } else if (tAlcool1 != tAlcool2) { // tratamento de valores inválidos de alcool
+        } else if (tAlcool1 != tAlcool2) {
             throw new IllegalArgumentException("Os valores de Alcool devem ser iguais");
-        //} else if (tAditivo != total * 0.05) {
-        //    throw new IllegalArgumentException("Valor aditivo diferente do indicado");
-        //} else if ((tAlcool1 + tAlcool2) != total * 0.25) {
-        //    throw new IllegalArgumentException("valores de alcool não podem ser diferentes de 25%");
-        //} else if (tGasolina != total * 0.7) {
-        //    throw new IllegalArgumentException("valor de gasolina diferente de 70%");
         } else {
             this.tAditivo = tAditivo;
             this.tGasolina = tGasolina;
