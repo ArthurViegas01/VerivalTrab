@@ -1,3 +1,5 @@
+package com.verivaltrab;
+
 /*Programa criado por:  Arthur Viegas
                         Israel Garcia
                         Pedro Fonseca   */
@@ -41,22 +43,36 @@ public class App{
     public static void main(String args[]){
 
         // Aditivo(TAD):500 lts
+        //      Sobraviso = acima de 125 e abaixo de 250
+        //      Emergência = abaixo de 125
         //Gasolina Pura(TG1): 10000 lts
+        //      Sobraviso = acima de 2500 e abaixo de 5000
+        //      Emergência = abaixo de 2500
         //Alcool(TA1): 1250 lts
+        //      Sobraviso = acima de 312,5 e abaixo de 625
+        //      Emergência = abaixo de 312,5
         //Alcool(TA2): 1250 lts
+        //      Sobraviso = acima de 312,5 e abaixo de 625
+        //      Emergência = abaixo de 312,5
+
+        //Centro recebe(aditivo,gasolina,alcool1,alcool2)
 
         CentroDistribuicao centroDistribuicao1 = new CentroDistribuicao(300, 6000, 700, 700);
         //Tem que estar normal
 
-        CentroDistribuicao centroDistribuicao2 = new CentroDistribuicao(400, 4000, 600, 600);
+        CentroDistribuicao centroDistribuicao2 = new CentroDistribuicao(200, 4000, 600, 600);
         //Tem que estar sobraviso
 
         CentroDistribuicao centroDistribuicao3 = new CentroDistribuicao(120, 2000, 300, 300);
         //Tem que estar emergencia
 
-
+        System.out.println("============================");
         System.out.println(centroDistribuicao1.toString());
+        System.out.println("============================");
         System.out.println(centroDistribuicao2.toString());
+        System.out.println("============================");
         System.out.println(centroDistribuicao3.toString());
+        System.out.println("============================");
+
     }
 }

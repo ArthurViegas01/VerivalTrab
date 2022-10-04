@@ -1,3 +1,5 @@
+package com.verivaltrab;
+
 
 public class CentroDistribuicao {
     public enum SITUACAO {
@@ -8,9 +10,9 @@ public class CentroDistribuicao {
         COMUM, ESTRATEGICO
     }
 
-    public static final int MAX_ADITIVO = 500;
-    public static final int MAX_ALCOOL = 2500;
-    public static final int MAX_GASOLINA = 10000;
+    public static final double MAX_ADITIVO = 500;
+    public static final double MAX_ALCOOL = 2500;
+    public static final double MAX_GASOLINA = 10000;
 
     private double tAditivo;
     private double tAlcool2;
@@ -27,37 +29,40 @@ public class CentroDistribuicao {
             throw new IllegalArgumentException("Valor negativo ou zero não suportado");
         } else if (tAlcool1 != tAlcool2) { // tratamento de valores inválidos de alcool
             throw new IllegalArgumentException("Os valores de Alcool devem ser iguais");
-        } else if (tAditivo != total * 0.05) {
-            throw new IllegalArgumentException("Valor aditivo diferente do indicado");
-        } else if ((tAlcool1 + tAlcool2) != total * 0.25) {
-            throw new IllegalArgumentException("valores de alcool não podem ser diferentes de 25%");
-        } else if (tGasolina != total * 0.7) {
-            throw new IllegalArgumentException("valor de gasolina diferente de 70%");
+        //} else if (tAditivo != total * 0.05) {
+        //    throw new IllegalArgumentException("Valor aditivo diferente do indicado");
+        //} else if ((tAlcool1 + tAlcool2) != total * 0.25) {
+        //    throw new IllegalArgumentException("valores de alcool não podem ser diferentes de 25%");
+        //} else if (tGasolina != total * 0.7) {
+        //    throw new IllegalArgumentException("valor de gasolina diferente de 70%");
         } else {
             this.tAditivo = tAditivo;
             this.tGasolina = tGasolina;
             this.tAlcool1 = tAlcool1;
             this.tAlcool2 = tAlcool2;
-            this.situacao = SITUACAO.NORMAL;
+            this.situacao = defineSituacao();
         }
     }
 
-    public void defineSituacao() {
-        if ((tGasolina <= (MAX_GASOLINA / 2)) && (tGasolina >= (MAX_GASOLINA / 4))) {
-            if ((tAlcool1 + tAlcool2 <= (MAX_ALCOOL / 2)) && (tAlcool1 + tAlcool2 <= (MAX_ALCOOL / 4))) {
-                if ((tAditivo <= (MAX_ADITIVO / 2)) && (tAditivo <= (MAX_ADITIVO / 4))) {
+    public SITUACAO defineSituacao() {
+        if ((tGasolina >= (MAX_GASOLINA * 0.25)) && (tGasolina <= (MAX_GASOLINA * 0.5))) {
+            if ((tAlcool1 + tAlcool2 >= (MAX_ALCOOL * 0.25)) && (tAlcool1 + tAlcool2 <= (MAX_ALCOOL * 0.5))) {
+                if ((tAditivo >= (MAX_ADITIVO * 0.25)) && (tAditivo <= (MAX_ADITIVO * 0.5))) {
                     situacao = SITUACAO.SOBRAVISO;
+                    return situacao;
                 }
             }
         }
-        if (tGasolina <= (MAX_GASOLINA / 4)) {
-            if (tAlcool1 + tAlcool2 <= (MAX_ALCOOL / 4)) {
-                if (tAditivo <= (MAX_ADITIVO / 4)) {
+        if (tGasolina < (MAX_GASOLINA * 0.25)) {
+            if (tAlcool1 + tAlcool2 < (MAX_ALCOOL * 0.25)) {
+                if (tAditivo < (MAX_ADITIVO * 0.25)) {
                     situacao = SITUACAO.EMERGENCIA;
+                    return situacao;
                 }
             }
         }
         situacao = SITUACAO.NORMAL;
+        return situacao;
 
     }
 
