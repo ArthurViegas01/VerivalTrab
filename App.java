@@ -1,10 +1,6 @@
-/*Programa criado por
-
-Arthur Viegas
-Israel Garcia
-Pedro Fonseca
-
-*/
+/*Programa criado por:  Arthur Viegas
+                        Israel Garcia
+                        Pedro Fonseca   */
 
 public class App{
 
@@ -44,5 +40,22 @@ public class App{
     */
     public static void main(String args[]){
 
+        // Aditivo(TAD):500 lts
+        //Gasolina Pura(TG1): 10000 lts
+        //Alcool(TA1): 1250 lts
+        //Alcool(TA2): 1250 lts
+
+        CentroDistribuicao centroDistribuicao1 = new CentroDistribuicao(300, 6000, 700, 700);
+        //Tem que estar normal
+
+        CentroDistribuicao centroDistribuicao2 = new CentroDistribuicao(400, 4000, 600, 600);
+        //Tem que estar sobraviso
+
+        CentroDistribuicao centroDistribuicao3 = new CentroDistribuicao(120, 2000, 300, 300);
+        //Tem que estar emergencia
+
+        System.out.println(centroDistribuicao1.toString());
+        System.out.println(centroDistribuicao2.toString());
+        System.out.println(centroDistribuicao3.toString());
     }
 }

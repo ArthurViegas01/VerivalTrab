@@ -12,13 +12,13 @@ public class CentroDistribuicao {
     public static final int MAX_ALCOOL = 2500;
     public static final int MAX_GASOLINA = 10000;
 
-    private int tAditivo;
-    private int tAlcool2;
-    private int tAlcool1;
-    private int tGasolina;
+    private double tAditivo;
+    private double tAlcool2;
+    private double tAlcool1;
+    private double tGasolina;
     private SITUACAO situacao;
 
-    public CentroDistribuicao (int tAditivo, int tGasolina, int tAlcool1, int tAlcool2) {
+    public CentroDistribuicao (double tAditivo, double tGasolina, double tAlcool1, double tAlcool2) {
         this.tAditivo = tAditivo;
         this.tGasolina = tGasolina;
         this.tAlcool1 = tAlcool1;
@@ -50,19 +50,19 @@ public class CentroDistribuicao {
         return situacao;
     }
 
-    public int getGasolina(){
+    public double getGasolina(){
         return tGasolina;
     }
 
-    public int getAditivo(){
+    public double getAditivo(){
         return tAditivo;
     }
 
-    public int getAlcool1(){
-        return  tAlcool1;
+    public double getAlcool1(){
+        return tAlcool1;
     }
 
-    public int getAlcool2(){
+    public double getAlcool2(){
         return tAlcool2;
     }
 
@@ -91,7 +91,7 @@ public class CentroDistribuicao {
         if(getAlcool1()!=getAlcool2()){
             return 0;
         }
-        int alcool=0;
+        double alcool=0;
         alcool=getAlcool1()+getAlcool2();
         if(alcool<qtdade*0.25){
             return 0;
@@ -128,6 +128,11 @@ public class CentroDistribuicao {
      //   return 0;
         return null;
 
+    }
+
+    @Override
+    public String toString() {
+        return "Aditivo = "+tAditivo+"\nGasolina = " + tGasolina + "\nAlcool1 = " + tAlcool1 + "\nAlcool2 = " + tAlcool2+ "\nSituação do posto = " + situacao;
     }
 }
 
