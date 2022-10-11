@@ -12,8 +12,6 @@ import verivaltrab2.CentroDistribuicao.TIPOPOSTO;
 public class AppTest 
 {   
 
-    private static final Object ILLEGAL_ARGUMENT_EXCEPTION = null;
-
     //T1
     //Gasolina em 50% e o resto em 60% 
     @Test
@@ -305,11 +303,19 @@ public class AppTest
         Assertions.assertEquals(100-5,centroDistribuicao0.gettAditivo());
     }
 
-    //acima do limite pertitido de capacidade dos tanques
+    //Testes com erros esperados
+
+    //Deve retornar erro de limite excedido
     @Test 
-    public void verificaCapacidadeMaxima(){
+    public void verificaCapacidadeMaximaGasolina(){
         CentroDistribuicao centroDistribuicao0 = new CentroDistribuicao(600, 11000, 1251, 1251);
-        Assertions.assertEquals(ILLEGAL_ARGUMENT_EXCEPTION,centroDistribuicao0.getSituacao());
+        Assertions.assertEquals(SITUACAO.NORMAL,centroDistribuicao0.getSituacao());
+    } 
+
+    @Test
+    public void verificaCapacidadeMaximaAlcool(){
+        CentroDistribuicao centroDistribuicao0 = new CentroDistribuicao(600, 10000, 1250, 951);
+        Assertions.assertEquals(SITUACAO.NORMAL,centroDistribuicao0.getSituacao());
     } 
     
     @Test
@@ -318,8 +324,5 @@ public class AppTest
         centroDistribuicao0.encomendaCombustivel(200,TIPOPOSTO.ESTRATEGICO); 
         Assertions.assertEquals(4-5,centroDistribuicao0.gettAditivo());
     }
-
-
-
 }
 
