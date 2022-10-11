@@ -4,6 +4,7 @@ import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
 import verivaltrab2.CentroDistribuicao.SITUACAO;
+import verivaltrab2.CentroDistribuicao.TIPOPOSTO;
 
 /**
  * Unit test for simple App.
@@ -156,7 +157,8 @@ public class AppTest
         centroDistribuicao0.encomendaCombustivel(200,TIPOPOSTO.COMUM);
         Assertions.assertEquals(6000-140,centroDistribuicao0.gettGasolina());
     }
-// alcool com problema 
+
+    // alcool com problema 
     @Test
     public void verificaCombustivelNormalAL(){
         CentroDistribuicao centroDistribuicao0 = new CentroDistribuicao(350,6000,750,750);
@@ -183,10 +185,10 @@ public class AppTest
     public void verificaCombustivelComumGS(){
         CentroDistribuicao centroDistribuicao0 = new CentroDistribuicao(248,4000,618,618);
         centroDistribuicao0.encomendaCombustivel(200,TIPOPOSTO.COMUM);
-        //N TA REALMENTE DESCONTANDO O MONTANTE TOTAL E SIM O DOBRO DO VALOR CORRETO
+        //NAO TA REALMENTE DESCONTANDO O MONTANTE TOTAL E SIM O DOBRO DO VALOR CORRETO
         Assertions.assertEquals(4000-70,centroDistribuicao0.gettGasolina());
     }
-// alcool com problema 
+    // alcool com problema 
     @Test
     public void verificaCombustivelComumALS(){
         CentroDistribuicao centroDistribuicao0 = new CentroDistribuicao(248,4000,618,618);

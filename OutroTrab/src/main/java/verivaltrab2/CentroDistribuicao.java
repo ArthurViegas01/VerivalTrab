@@ -8,17 +8,17 @@ public class CentroDistribuicao {
 	public enum SITUACAO { NORMAL, SOBRAVISO, EMERGENCIA }
 	public enum TIPOPOSTO { COMUM, ESTRATEGICO }
 	
-	public static final int MAX_ADITIVO = 500;
-	public static final int MAX_ALCOOL = 2500;
-	public static final int MAX_GASOLINA = 10000;
+	public static final double MAX_ADITIVO = 500;
+	public static final double MAX_ALCOOL = 2500;
+	public static final double MAX_GASOLINA = 10000;
 	
 	private SITUACAO situacao;
-	private int tAditivo = 0;
-	private int tGasolina = 0;
-	private int tAlcool1 = 0;
-	private int tAlcool2 = 0;
+	private double tAditivo = 0;
+	private double tGasolina = 0;
+	private double tAlcool1 = 0;
+	private double tAlcool2 = 0;
 	
-	public CentroDistribuicao (int tAditivo, int tGasolina, int tAlcool1, int tAlcool2) {
+	public CentroDistribuicao (double tAditivo, double tGasolina, double tAlcool1, double tAlcool2) {
 		// Controlar valores de entrada
 		if (tAlcool1 != tAlcool2
 			|| tAditivo < 0
@@ -46,42 +46,42 @@ public class CentroDistribuicao {
 	public SITUACAO getSituacao(){
 		return this.situacao;
 	}
-	public int gettGasolina(){
+	public double gettGasolina(){
 		return this.tGasolina;
 	}
-	public int gettAditivo(){
+	public double gettAditivo(){
 		return this.tAditivo;
 	}
-	public int gettAlcool1(){
+	public double gettAlcool1(){
 		return this.tAlcool1;
 	}
-	public int gettAlcool2(){
+	public double gettAlcool2(){
 		return this.tAlcool2;
 	}
-	public int recebeAditivo(int qtdade) {
+	public double recebeAditivo(double qtdade) {
 		if (qtdade < 0) return -1;
-		int qtdAArmazenar = this.tAditivo - (MAX_ADITIVO - qtdade);
+		double qtdAArmazenar = this.tAditivo - (MAX_ADITIVO - qtdade);
 		this.tAditivo += qtdAArmazenar;
 		defineSituacao();
 		return qtdAArmazenar;
 	}
-	public int recebeGasolina(int qtdade) {
+	public double recebeGasolina(double qtdade) {
 		if (qtdade < 0) return -1;
-		int qtdAArmazenar = this.tGasolina - (MAX_ADITIVO - qtdade);
+		double qtdAArmazenar = this.tGasolina - (MAX_ADITIVO - qtdade);
 		this.tGasolina += qtdAArmazenar;
 		defineSituacao();
 		return qtdAArmazenar;
 	}
-	public int recebeAlcool(int qtdade) {
+	public double recebeAlcool(double qtdade) {
 		if (qtdade < 0) return -1;
-		int qtdAArmazenar = (this.tAlcool1 + this.tAlcool2) - (MAX_ADITIVO - qtdade);
+		double qtdAArmazenar = (this.tAlcool1 + this.tAlcool2) - (MAX_ADITIVO - qtdade);
 		this.tAlcool1 += qtdAArmazenar * 10 / 2 / 10;
 		this.tAlcool2 += qtdAArmazenar * 10 / 2 / 10;
 		defineSituacao();
 		return qtdAArmazenar - (qtdAArmazenar % 2);
 	}
-	public int[] encomendaCombustivel(int qtdade, TIPOPOSTO tipoPosto) {
-		int[] output = new int[4];
+	public double[] encomendaCombustivel(double qtdade, TIPOPOSTO tipoPosto) {
+		double[] output = new double[4];
 		if (qtdade < 0) { output[0] = -7; output[1] = 0; output[2] = 0; output[3] = 0; return output; }
 		switch (getSituacao()){
 			case NORMAL: return entregaNPorCento(qtdade, 100);
@@ -101,14 +101,14 @@ public class CentroDistribuicao {
 		return output;
 	}
 
-	public int[] entregaNPorCento(int qtdade, int n){
+	public double[] entregaNPorCento(double qtdade, double n){
 		// REVISAR
 		// revisar especialmente como se trata da divisão de alcool em 2, já que (25 / 2) tem uma casa decimal diferente de zero
 
-		int[] auxAditivo = calculaPorcentagens(tAditivo, qtdade, 5 * 100);
-		int[] auxGasolina = calculaPorcentagens(tGasolina, qtdade, 70 * 100);
-		int[] auxAlcool1 = calculaPorcentagens(tAlcool1, qtdade, (int) 12.5 * 100);
-		int[] auxAlcool2 = calculaPorcentagens(tAlcool2, qtdade, (int) 12.5 * 100);
+		double[] auxAditivo = calculaPorcentagens(tAditivo, qtdade, 5 * 100);
+		double[] auxGasolina = calculaPorcentagens(tGasolina, qtdade, 70 * 100);
+		double[] auxAlcool1 = calculaPorcentagens(tAlcool1, qtdade, 12.5 * 100);
+		double[] auxAlcool2 = calculaPorcentagens(tAlcool2, qtdade, 12.5 * 100);
 
 		if (auxAditivo[0] >= 0
 			&& auxGasolina[0] >= 0
@@ -120,19 +120,20 @@ public class CentroDistribuicao {
 			this.tAlcool1 = auxAlcool1[0];
 			this.tAlcool2 = auxAlcool2[0];
 			defineSituacao();
-			int[] output = {auxAditivo[1], auxGasolina[1], auxAlcool1[1], auxAlcool2[1]};
+			double[] output = {auxAditivo[1], auxGasolina[1], auxAlcool1[1], auxAlcool2[1]};
 			return output;
 		}
 		defineSituacao();
 
-		int[] output = { -21, 0, 0, 0 };
+		double[] output = { -21, 0, 0, 0 };
 		return output;
 	}
 
-	public int[] calculaPorcentagens(int tanque, int qtdade, int porcentagem){ // devolve em [0] o restante no tanque (ou erro), e, em [1], o combustível tirado
-		int quantidadeDesejada = qtdade * porcentagem / 100 / 100;
+	public double[] calculaPorcentagens(double tanque, double qtdade, double porcentagem){ // devolve em [0] o restante no tanque (ou erro), e, em [1], o combustível tirado
+		
+		double quantidadeDesejada = qtdade * porcentagem / 100 / 100;
 		if (tanque >= quantidadeDesejada){
-			int[] output = {tanque - quantidadeDesejada, quantidadeDesejada};
+			double[] output = {tanque - quantidadeDesejada, quantidadeDesejada};
 			return output;
 		}
 		return null;
