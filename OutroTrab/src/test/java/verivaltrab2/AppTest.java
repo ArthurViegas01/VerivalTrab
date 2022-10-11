@@ -149,7 +149,32 @@ public class AppTest
      
 
        
-    // }
+     // }
+    //quantidade 200, situacao normal
+    //posto comum 
+    //resultado esperado voltar 100%
+    //140 70% de gasolina testada
+    @Test
+    public void verificaCombustivel0(){
+        CentroDistribuicao centroDistribuicao0 = new CentroDistribuicao(350,6000,750,750);
+        centroDistribuicao0.encomendaCombustivel(200,TIPOPOSTO.COMUM);
+        Assertions.assertEquals(6000-140,centroDistribuicao0.gettGasolina());
+    }
+// alcool com problema 
+    @Test
+    public void verificaCombustivel1(){
+        CentroDistribuicao centroDistribuicao0 = new CentroDistribuicao(350,6000,750,750);
+        centroDistribuicao0.encomendaCombustivel(200,TIPOPOSTO.COMUM);
+        Assertions.assertEquals(750-25,centroDistribuicao0.gettAlcool1());
+        Assertions.assertEquals(750-25,centroDistribuicao0.gettAlcool2());
+    }
 
-
+    @Test
+    public void verificaCombustivel2(){
+        CentroDistribuicao centroDistribuicao0 = new CentroDistribuicao(350,6000,750,750);
+        centroDistribuicao0.encomendaCombustivel(200,TIPOPOSTO.COMUM);
+        Assertions.assertEquals(350-10,centroDistribuicao0.gettAditivo());
+       
+    }
 }
+
