@@ -305,7 +305,20 @@ public class AppTest
         Assertions.assertEquals(100-5,centroDistribuicao0.gettAditivo());
     }
 
-
+      //acima do limite pertitido de capacidade dos tanques
+        @Test 
+        public void verificaCapacidadeMaxima(){
+            CentroDistribuicao centroDistribuicao0 = new CentroDistribuicao(600, 11000, 1251, 1251);
+                Assertions.assertEquals(SITUACAO.NORMAL,centroDistribuicao0.getSituacao());
+            
+        }
+    
+        @Test
+        public void verificaPedidoAcimaCapacidade(){
+        CentroDistribuicao centroDistribuicao0 = new CentroDistribuicao(10,2000, 320, 320);
+        centroDistribuicao0.encomendaCombustivel(200,TIPOPOSTO.ESTRATEGICO);
+        Assertions.assertEquals(10-5,centroDistribuicao0.gettAditivo());
+        }
 
 
 
