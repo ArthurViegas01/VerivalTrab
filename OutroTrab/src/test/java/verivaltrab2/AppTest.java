@@ -315,9 +315,9 @@ public class AppTest
     
         @Test
         public void verificaPedidoAcimaCapacidade(){
-        CentroDistribuicao centroDistribuicao0 = new CentroDistribuicao(10,2000, 320, 320);
+        CentroDistribuicao centroDistribuicao0 = new CentroDistribuicao(4,2000, 320, 320);
         centroDistribuicao0.encomendaCombustivel(200,TIPOPOSTO.ESTRATEGICO);
-        Assertions.assertEquals(10-5,centroDistribuicao0.gettAditivo());
+        Assertions.assertEquals(4-5,centroDistribuicao0.gettAditivo());
         }
 
 
