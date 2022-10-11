@@ -25,7 +25,13 @@ public class CentroDistribuicao {
 			|| tGasolina < 0
 			|| tAlcool1 < 0	// não é necessário verificar as duas; para dar erro: ou as duas são iguais, e as duas são negativas; ou as duas são diferentes, não importando se são > 0 ou < 0
 			|| tAlcool1 != tAlcool2)
-			throw new ILLEGAL_ARGUMENT_EXCEPTION("Algum argumento fornecido é inválido (menor que 0)");
+		throw new ILLEGAL_ARGUMENT_EXCEPTION("Algum argumento fornecido é inválido (menor que 0)");
+
+		if ( tAditivo > MAX_ADITIVO
+		|| tGasolina > MAX_GASOLINA
+		|| (tAlcool1+tAlcool2) > MAX_ALCOOL)
+		throw new ILLEGAL_ARGUMENT_EXCEPTION("Valor acima dos limites do tanque");
+
 		this.tAditivo = tAditivo;
 		this.tGasolina = tGasolina;
 		this.tAlcool1 = tAlcool1;
