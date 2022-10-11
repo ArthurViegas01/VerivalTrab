@@ -180,20 +180,19 @@ public class AppTest
     //posto comum 
     //resultado esperado voltar 50% do total solicitado
 
-
+    //Em postos comuns e em situação de sobraviso, o posto deve retornar apenas 50% da gasolina encomendada
+    //porém o programa não estava fazendo o desconto
     @Test
     public void verificaCombustivelComumGS(){
         CentroDistribuicao centroDistribuicao0 = new CentroDistribuicao(248,4000,618,618);
         centroDistribuicao0.encomendaCombustivel(200,TIPOPOSTO.COMUM);
-        //NAO TA REALMENTE DESCONTANDO O MONTANTE TOTAL E SIM O DOBRO DO VALOR CORRETO
         Assertions.assertEquals(4000-70,centroDistribuicao0.gettGasolina());
     }
-    // alcool com problema 
+
     @Test
     public void verificaCombustivelComumALS(){
         CentroDistribuicao centroDistribuicao0 = new CentroDistribuicao(248,4000,618,618);
         centroDistribuicao0.encomendaCombustivel(200,TIPOPOSTO.COMUM);
-        //DOBRO 
         Assertions.assertEquals(618-12.5,centroDistribuicao0.gettAlcool1());
         Assertions.assertEquals(618-12.5,centroDistribuicao0.gettAlcool2());
     }
@@ -202,7 +201,6 @@ public class AppTest
     public void verificaCombustivelComumADS(){
         CentroDistribuicao centroDistribuicao0 = new CentroDistribuicao(248,4000,618,618);
         centroDistribuicao0.encomendaCombustivel(200,TIPOPOSTO.COMUM);
-        //DOBRO TAMBÉM
         Assertions.assertEquals(248-5,centroDistribuicao0.gettAditivo());
        
     }
@@ -285,9 +283,8 @@ public class AppTest
         Assertions.assertEquals(248-10,centroDistribuicao0.gettAditivo());
        
     }
-    //quantidade 200, situacao emergencia
-    //posto estrategico
-    //resultado esperado voltar 50% do total solicitado
+    //Em postos estratégicos, quando a situação for de emergencia o posto deve entregar
+    //apenas 50% da gasolina encomendada, porém o programa não faz o desconto na situação de emergência
     @Test
     public void verificaCombustivelEstrategicoEG(){
         CentroDistribuicao centroDistribuicao0 = new CentroDistribuicao(100,2000,340,340);

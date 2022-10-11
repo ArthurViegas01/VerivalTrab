@@ -84,24 +84,28 @@ public class CentroDistribuicao {
 		double[] output = new double[4];
 		if (qtdade < 0) { output[0] = -7; output[1] = 0; output[2] = 0; output[3] = 0; return output; }
 		switch (getSituacao()){
-			case NORMAL: return entregaNPorCento(qtdade, 100);
+			case NORMAL: return entregaNPorCento(qtdade);
 			case SOBRAVISO: {
 				switch(tipoPosto){
-					case COMUM: return entregaNPorCento(qtdade, 50);
-					case ESTRATEGICO: return entregaNPorCento(qtdade, 100);
+					case COMUM: 
+						qtdade = qtdade/2;
+						return entregaNPorCento(qtdade);
+					case ESTRATEGICO: return entregaNPorCento(qtdade);
 				}
 			}
 			case EMERGENCIA: {
 				switch(tipoPosto){
 					case COMUM: { output[0] = -14; output[1] = 0; output[2] = 0; output[3] = 0; }; return output;
-					case ESTRATEGICO: return entregaNPorCento(qtdade, 50);
+					case ESTRATEGICO: 
+					qtdade = qtdade/2;
+					return entregaNPorCento(qtdade);
 				}
 			}
 		}
 		return output;
 	}
 
-	public double[] entregaNPorCento(double qtdade, double n){
+	public double[] entregaNPorCento(double qtdade){
 		// REVISAR
 		// revisar especialmente como se trata da divisão de alcool em 2, já que (25 / 2) tem uma casa decimal diferente de zero
 
