@@ -10,12 +10,16 @@ import verivaltrab2.CentroDistribuicao.TIPOPOSTO;
  * Unit test for simple App.
  */
 public class AppTest 
-{
+{   
+
+    private static final Object ILLEGAL_ARGUMENT_EXCEPTION = null;
+
+    //T1
+    //Gasolina em 50% e o resto em 60% 
     @Test
     public void verificaSituacao1(){
         CentroDistribuicao centroDistribuicao1 = new CentroDistribuicao(320, 5000, 750, 750);
-
-       Assertions.assertEquals(SITUACAO.NORMAL,centroDistribuicao1.getSituacao());
+        Assertions.assertEquals(SITUACAO.NORMAL,centroDistribuicao1.getSituacao());
     }
     //T2
     //gasolina ==49% de seu tanque, o resto em 60%
@@ -23,9 +27,7 @@ public class AppTest
     @Test
     public void verificaSituacao2(){
         CentroDistribuicao centroDistribuicao1 = new CentroDistribuicao(320, 4999, 750, 750);
-     
-
-       Assertions.assertEquals(SITUACAO.SOBRAVISO,centroDistribuicao1.getSituacao());
+        Assertions.assertEquals(SITUACAO.SOBRAVISO,centroDistribuicao1.getSituacao());
     }
 
     //T3
@@ -34,8 +36,6 @@ public class AppTest
     @Test
     public void verificaSituacao3(){
         CentroDistribuicao centroDistribuicao1 = new CentroDistribuicao(249, 2500, 624, 624);
-     
-
         Assertions.assertEquals(SITUACAO.SOBRAVISO,centroDistribuicao1.getSituacao());
     }
 
@@ -306,18 +306,18 @@ public class AppTest
     }
 
     //acima do limite pertitido de capacidade dos tanques
-      @Test 
-      public void verificaCapacidadeMaxima(){
-          CentroDistribuicao centroDistribuicao0 = new CentroDistribuicao(600, 11000, 1251, 1251);
-              Assertions.assertEquals(SITUACAO.NORMAL,centroDistribuicao0.getSituacao());
-
-      } 
-      @Test
-      public void verificaPedidoAcimaCapacidade(){
-      CentroDistribuicao centroDistribuicao0 = new CentroDistribuicao(4,2000, 320, 320);
-      centroDistribuicao0.encomendaCombustivel(200,TIPOPOSTO.ESTRATEGICO);  
-      Assertions.assertEquals(4-5,centroDistribuicao0.gettAditivo());
-      }
+    @Test 
+    public void verificaCapacidadeMaxima(){
+        CentroDistribuicao centroDistribuicao0 = new CentroDistribuicao(600, 11000, 1251, 1251);
+        Assertions.assertEquals(ILLEGAL_ARGUMENT_EXCEPTION,centroDistribuicao0.getSituacao());
+    } 
+    
+    @Test
+    public void verificaPedidoAcimaCapacidade(){
+        CentroDistribuicao centroDistribuicao0 = new CentroDistribuicao(4,2000, 320, 320);
+        centroDistribuicao0.encomendaCombustivel(200,TIPOPOSTO.ESTRATEGICO); 
+        Assertions.assertEquals(4-5,centroDistribuicao0.gettAditivo());
+    }
 
 
 
