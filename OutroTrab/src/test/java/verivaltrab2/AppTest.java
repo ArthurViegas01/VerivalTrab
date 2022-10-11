@@ -10,9 +10,6 @@ import verivaltrab2.CentroDistribuicao.SITUACAO;
  */
 public class AppTest 
 {
-   
-    //T1
-    // gasolina ==50% de seu estoque, o resto em 60% 
     @Test
     public void verificaSituacao1(){
         CentroDistribuicao centroDistribuicao1 = new CentroDistribuicao(320, 5000, 750, 750);
@@ -47,7 +44,7 @@ public class AppTest
     //resultado esperado SITUACAO EMERGENCIA
     @Test
     public void verificaSituacao4(){
-        CentroDistribuicao centroDistribuicao1 = new CentroDistribuicao(249, 2499, 1249, 1249);
+        CentroDistribuicao centroDistribuicao1 = new CentroDistribuicao(249, 2499, 624, 624);
      
 
        Assertions.assertEquals(SITUACAO.EMERGENCIA,centroDistribuicao1.getSituacao());
@@ -58,7 +55,7 @@ public class AppTest
     //resultado esperado SITUACAO NORMAL
     @Test
     public void verificaSituacao5(){
-        CentroDistribuicao centroDistribuicao1 = new CentroDistribuicao(250, 6000, 1500, 1500);
+        CentroDistribuicao centroDistribuicao1 = new CentroDistribuicao(250, 6000, 750, 750);
      
 
         Assertions.assertEquals(SITUACAO.NORMAL,centroDistribuicao1.getSituacao());
@@ -69,7 +66,7 @@ public class AppTest
 
     @Test
     public void verificaSituacao6(){
-        CentroDistribuicao centroDistribuicao1 = new CentroDistribuicao(249, 6000, 1500, 1500);
+        CentroDistribuicao centroDistribuicao1 = new CentroDistribuicao(249, 6000, 750, 750);
      
 
         Assertions.assertEquals(SITUACAO.SOBRAVISO,centroDistribuicao1.getSituacao());
@@ -80,18 +77,18 @@ public class AppTest
     //resultado esperado SITUACAO SOBRAVISO
     @Test
     public void verificaSituacao7(){
-        CentroDistribuicao centroDistribuicao1 = new CentroDistribuicao(125, 2501, 1249, 1249);
+        CentroDistribuicao centroDistribuicao1 = new CentroDistribuicao(125, 4999, 611, 611);
      
 
         Assertions.assertEquals(SITUACAO.SOBRAVISO,centroDistribuicao1.getSituacao());
     }
      
     //T8
-    //adivito ==24% de seu tanque, o resto em 40%
+    //adivito ==24% de seu tanque, o resto em 49%
     //resultado esperado SITUACAO EMERGENCIA
     @Test
     public void verificaSituacao8(){
-        CentroDistribuicao centroDistribuicao1 = new CentroDistribuicao(124, 4000, 1000, 1000);
+        CentroDistribuicao centroDistribuicao1 = new CentroDistribuicao(124, 4000, 611, 611);
      
 
         Assertions.assertEquals(SITUACAO.EMERGENCIA,centroDistribuicao1.getSituacao());
@@ -102,7 +99,7 @@ public class AppTest
     //resultado esperado SITUACAO NORMAL
     @Test
     public void verificaSituacao9(){
-        CentroDistribuicao centroDistribuicao1 = new CentroDistribuicao(320, 6000, 750, 750);
+        CentroDistribuicao centroDistribuicao1 = new CentroDistribuicao(320, 6000, 650, 650);
      
 
         Assertions.assertEquals(SITUACAO.NORMAL,centroDistribuicao1.getSituacao());
@@ -112,8 +109,7 @@ public class AppTest
     //resultado esperado SITUACAO AVISO
     @Test
     public void verificaSituacao10(){
-        CentroDistribuicao centroDistribuicao1 = new CentroDistribuicao(320, 6000, 624, 624);
-     
+        CentroDistribuicao centroDistribuicao1 = new CentroDistribuicao(320, 6000, 612, 612);
 
         Assertions.assertEquals(SITUACAO.SOBRAVISO,centroDistribuicao1.getSituacao());
     }
@@ -122,7 +118,7 @@ public class AppTest
     //resultado esperado SITUACAO AVISO
     @Test
     public void verificaSituacao11(){
-        CentroDistribuicao centroDistribuicao1 = new CentroDistribuicao(249, 4999, 313, 313);
+        CentroDistribuicao centroDistribuicao1 = new CentroDistribuicao(250, 4999, 313, 313);
      
 
         Assertions.assertEquals(SITUACAO.SOBRAVISO,centroDistribuicao1.getSituacao());
@@ -149,31 +145,30 @@ public class AppTest
      
 
        
-     // }
+    // }
     //quantidade 200, situacao normal
-    //posto comum 
+    //posto estrategico
     //resultado esperado voltar 100%
     //140 70% de gasolina testada
-   
     @Test
-    public void verificaCombustivel10(){
+    public void ververificaCombustivelNormalG(){
         CentroDistribuicao centroDistribuicao0 = new CentroDistribuicao(350,6000,750,750);
-        centroDistribuicao0.encomendaCombustivel(200,TIPOPOSTO.ESTRATEGICO);
+        centroDistribuicao0.encomendaCombustivel(200,TIPOPOSTO.COMUM);
         Assertions.assertEquals(6000-140,centroDistribuicao0.gettGasolina());
     }
 // alcool com problema 
     @Test
-    public void verificaCombustivel11(){
+    public void verificaCombustivelNormalAL(){
         CentroDistribuicao centroDistribuicao0 = new CentroDistribuicao(350,6000,750,750);
-        centroDistribuicao0.encomendaCombustivel(200,TIPOPOSTO.ESTRATEGICO);
+        centroDistribuicao0.encomendaCombustivel(200,TIPOPOSTO.COMUM);
         Assertions.assertEquals(750-25,centroDistribuicao0.gettAlcool1());
         Assertions.assertEquals(750-25,centroDistribuicao0.gettAlcool2());
     }
 
     @Test
-    public void verificaCombustivel12(){
+    public void verificaCombustivelNormalAD(){
         CentroDistribuicao centroDistribuicao0 = new CentroDistribuicao(350,6000,750,750);
-        centroDistribuicao0.encomendaCombustivel(200,TIPOPOSTO.ESTRATEGICO);
+        centroDistribuicao0.encomendaCombustivel(200,TIPOPOSTO.COMUM);
         Assertions.assertEquals(350-10,centroDistribuicao0.gettAditivo());
        
     }
@@ -182,67 +177,70 @@ public class AppTest
     //quantidade 200, situacao sobaviso
     //posto comum 
     //resultado esperado voltar 50% do total solicitado
-    //70 litros 70% de gasolina 
+
 
     @Test
-    public void verificaCombustivel100(){
+    public void verificaCombustivelComumGS(){
         CentroDistribuicao centroDistribuicao0 = new CentroDistribuicao(248,4000,618,618);
-        centroDistribuicao0.encomendaCombustivel(200,TIPOPOSTO.ESTRATEGICO);
-        Assertions.assertEquals(4000-140,centroDistribuicao0.gettGasolina());
+        centroDistribuicao0.encomendaCombustivel(200,TIPOPOSTO.COMUM);
+        //N TA REALMENTE DESCONTANDO O MONTANTE TOTAL E SIM O DOBRO DO VALOR CORRETO
+        Assertions.assertEquals(4000-70,centroDistribuicao0.gettGasolina());
     }
 // alcool com problema 
     @Test
-    public void verificaCombustivel101(){
+    public void verificaCombustivelComumALS(){
         CentroDistribuicao centroDistribuicao0 = new CentroDistribuicao(248,4000,618,618);
-        centroDistribuicao0.encomendaCombustivel(200,TIPOPOSTO.ESTRATEGICO);
-        Assertions.assertEquals(618-25,centroDistribuicao0.gettAlcool1());
-        Assertions.assertEquals(618-25,centroDistribuicao0.gettAlcool2());
+        centroDistribuicao0.encomendaCombustivel(200,TIPOPOSTO.COMUM);
+        //DOBRO 
+        Assertions.assertEquals(618-12.5,centroDistribuicao0.gettAlcool1());
+        Assertions.assertEquals(618-12.5,centroDistribuicao0.gettAlcool2());
     }
 
     @Test
-    public void verificaCombustivel102(){
+    public void verificaCombustivelComumADS(){
         CentroDistribuicao centroDistribuicao0 = new CentroDistribuicao(248,4000,618,618);
-        centroDistribuicao0.encomendaCombustivel(200,TIPOPOSTO.ESTRATEGICO);
-        Assertions.assertEquals(248-10,centroDistribuicao0.gettAditivo());
+        centroDistribuicao0.encomendaCombustivel(200,TIPOPOSTO.COMUM);
+        //DOBRO TAMBÉM
+        Assertions.assertEquals(248-5,centroDistribuicao0.gettAditivo());
        
     }
     //quantidade 200, situacao emergencia
     //posto comum
     //resultado esperado voltar 0 do total solicitado
     @Test
-    public void verificaCombustivel121(){
+    public void verificaCombustivelComumGE(){
         CentroDistribuicao centroDistribuicao0 = new CentroDistribuicao(100,2000,340,340);
-        centroDistribuicao0.encomendaCombustivel(200,TIPOPOSTO.ESTRATEGICO);
-        Assertions.assertEquals(2000-140,centroDistribuicao0.gettGasolina());
+        centroDistribuicao0.encomendaCombustivel(200,TIPOPOSTO.COMUM);
+        Assertions.assertEquals(2000-0,centroDistribuicao0.gettGasolina());
     }
     @Test
-    public void verificaCombustivel131(){
+    public void verificaCombustivelComumALE(){
         CentroDistribuicao centroDistribuicao0 = new CentroDistribuicao(100,2000,340,340);
-        centroDistribuicao0.encomendaCombustivel(200,TIPOPOSTO.ESTRATEGICO);
-        Assertions.assertEquals(340-25,centroDistribuicao0.gettAlcool1());
-        Assertions.assertEquals(340-25,centroDistribuicao0.gettAlcool2());
+        centroDistribuicao0.encomendaCombustivel(200,TIPOPOSTO.COMUM);
+        Assertions.assertEquals(340-0,centroDistribuicao0.gettAlcool1());
+        Assertions.assertEquals(340-0,centroDistribuicao0.gettAlcool2());
     }
     @Test
-    public void verificaCombustivel132(){
+    public void verificaCombustivelComumADE(){
         CentroDistribuicao centroDistribuicao0 = new CentroDistribuicao(100,2000,340,340);
-        centroDistribuicao0.encomendaCombustivel(200,TIPOPOSTO.ESTRATEGICO);
+        centroDistribuicao0.encomendaCombustivel(200,TIPOPOSTO.COMUM);
         Assertions.assertEquals(100-0,centroDistribuicao0.gettAditivo());
     }
 
 
      //quantidade 200, situacao normal
-    //posto comum 
+    //posto estrategico 
     //resultado esperado voltar 100%
-    //140 70% de gasolina testada
+    
     @Test
-    public void verificaCombustivel0(){
+    public void verificaCombustivelEstrategicoCG(){
         CentroDistribuicao centroDistribuicao0 = new CentroDistribuicao(350,6000,750,750);
         centroDistribuicao0.encomendaCombustivel(200,TIPOPOSTO.ESTRATEGICO);
         Assertions.assertEquals(6000-140,centroDistribuicao0.gettGasolina());
     }
 // alcool com problema 
     @Test
-    public void verificaCombustivel1(){
+    public void verificaCombustivelEstrategicoCAL(){
         CentroDistribuicao centroDistribuicao0 = new CentroDistribuicao(350,6000,750,750);
         centroDistribuicao0.encomendaCombustivel(200,TIPOPOSTO.ESTRATEGICO);
         Assertions.assertEquals(750-25,centroDistribuicao0.gettAlcool1());
@@ -250,7 +248,7 @@ public class AppTest
     }
 
     @Test
-    public void verificaCombustivel2(){
+    public void verificaCombustivelEstrategicoCAD(){
         CentroDistribuicao centroDistribuicao0 = new CentroDistribuicao(350,6000,750,750);
         centroDistribuicao0.encomendaCombustivel(200,TIPOPOSTO.ESTRATEGICO);
         Assertions.assertEquals(350-10,centroDistribuicao0.gettAditivo());
@@ -260,18 +258,18 @@ public class AppTest
 
     //quantidade 200, situacao sobaviso
     //posto estrategico
-    //resultado esperado voltar 50% do total solicitado
+    //resultado esperado voltar 100% do total solicitado
      
 
     @Test
-    public void verificaCombustivel00(){
+    public void verificaCombustivelEstrategicoSG(){
         CentroDistribuicao centroDistribuicao0 = new CentroDistribuicao(248,4000,618,618);
         centroDistribuicao0.encomendaCombustivel(200,TIPOPOSTO.ESTRATEGICO);
         Assertions.assertEquals(4000-140,centroDistribuicao0.gettGasolina());
     }
 // alcool com problema 
     @Test
-    public void verificaCombustivel01(){
+    public void verificaCombustivelEstrategicoSAL(){
         CentroDistribuicao centroDistribuicao0 = new CentroDistribuicao(248,4000,618,618);
         centroDistribuicao0.encomendaCombustivel(200,TIPOPOSTO.ESTRATEGICO);
         Assertions.assertEquals(618-25,centroDistribuicao0.gettAlcool1());
@@ -279,7 +277,7 @@ public class AppTest
     }
 
     @Test
-    public void verificaCombustivel02(){
+    public void verificaCombustivelEstrategicoSAD(){
         CentroDistribuicao centroDistribuicao0 = new CentroDistribuicao(248,4000,618,618);
         centroDistribuicao0.encomendaCombustivel(200,TIPOPOSTO.ESTRATEGICO);
         Assertions.assertEquals(248-10,centroDistribuicao0.gettAditivo());
@@ -289,24 +287,28 @@ public class AppTest
     //posto estrategico
     //resultado esperado voltar 50% do total solicitado
     @Test
-    public void verificaCombustivel000(){
+    public void verificaCombustivelEstrategicoEG(){
         CentroDistribuicao centroDistribuicao0 = new CentroDistribuicao(100,2000,340,340);
         centroDistribuicao0.encomendaCombustivel(200,TIPOPOSTO.ESTRATEGICO);
-        Assertions.assertEquals(2000-140,centroDistribuicao0.gettGasolina());
+        Assertions.assertEquals(2000-70,centroDistribuicao0.gettGasolina());
     }
     @Test
-    public void verificaCombustivel001(){
+    public void verificaCombustivelEstrategicoEAL(){
         CentroDistribuicao centroDistribuicao0 = new CentroDistribuicao(100,2000,340,340);
         centroDistribuicao0.encomendaCombustivel(200,TIPOPOSTO.ESTRATEGICO);
-        Assertions.assertEquals(340-25,centroDistribuicao0.gettAlcool1());
-        Assertions.assertEquals(340-25,centroDistribuicao0.gettAlcool2());
+        Assertions.assertEquals(340-12.5,centroDistribuicao0.gettAlcool1());
+        Assertions.assertEquals(340-12.5,centroDistribuicao0.gettAlcool2());
     }
     @Test
-    public void verificaCombustivel002(){
+    public void verificaCombustivelEstrategicoEAD(){
         CentroDistribuicao centroDistribuicao0 = new CentroDistribuicao(100,2000,340,340);
         centroDistribuicao0.encomendaCombustivel(200,TIPOPOSTO.ESTRATEGICO);
         Assertions.assertEquals(100-5,centroDistribuicao0.gettAditivo());
     }
+
+
+
+
 
 }
 
